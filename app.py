@@ -37,6 +37,7 @@ def main() :
     # 3. PAG에 필요한 인덱스 셋팅
     # 4. 유저에게 프롬프트 입력받아서 응답
     initialize_models()
+    
     st.title('PDF문서 기반 질의 응답')
     st.text('선진기업 복지 업무메뉴얼을 기반으로 질의응답을 제공합니다.')
     pass
