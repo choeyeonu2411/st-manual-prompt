@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 from llama_index.llms.huggingface_api import HuggingFaceInferenceAPI
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
@@ -5,7 +6,12 @@ from llama_index.core import Settings,StorageContext,load_index_from_storage
 from huggingface_hub import snapshot_download
 
 def get_huggingiface_token() :
-    token=st.secrets.get('HUGGINIGFACE_API_TOKEN')
+    # 실서버에는 os의 환경변수에 셋팅된다. 따라서 환경변수 읽어오는 코드로 작성해야 한다.
+    os.environ.get('HUGGINIGFACE_API_TOKEN')
+
+    # 토큰이 환경변수에 없으면, 로컬에서 동작하니까 로컬에서 읽어오도록한다.
+    if token is None :
+        token=st.secrets.get('HUGGINIGFACE_API_TOKEN')
     return token
 
 @st.cache_resource
